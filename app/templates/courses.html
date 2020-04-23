@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<div style="font-family: 'IBM Plex Mono', monospace;">
+    <div class="section">
+        <table class="table is-fullwidth is-bordered is-striped">
+            <tr class="is-selected">
+                <th>COURSE CODE</th>
+                <th>NAME</th>
+                <th>CREDITS</th>
+                <th>ENROLLED NO. OF STUDENTS</th>
+            </tr>
+            {% for i in info %}
+                <tr>
+                    <td>{{ i['CourseCode'] }}</td>
+                    <td>{{ i['Name'] }}</td>
+                    <td>{{ i['Credits'] }}</td>
+                    <td>{{ i['No_of_students_enrolled'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

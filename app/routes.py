@@ -18,3 +18,31 @@ def showFaculty() :
     cur.execute("select * from Faculty")
     data = cur.fetchall()
     return render_template("faculty.html" , info = data)
+
+@app.route('/branch')
+def showBranch() :
+    cur = mysql.connection.cursor()
+    cur.execute("select * from Branch")
+    data = cur.fetchall()
+    return render_template("branch.html" , info = data)
+
+@app.route('/courses')
+def showCourses() :
+    cur = mysql.connection.cursor()
+    cur.execute("select * from Courses")
+    data = cur.fetchall()
+    return render_template("courses.html" , info = data)
+
+@app.route('/rooms')
+def showRoom() :
+    cur = mysql.connection.cursor()
+    cur.execute("select * from Room")
+    data = cur.fetchall()
+    return render_template("room.html" , info = data)
+
+@app.route('/fms')
+def showFms() :
+    cur = mysql.connection.cursor()
+    cur.execute("select * from FMS")
+    data = cur.fetchall()
+    return render_template("fms.html" , info = data)
