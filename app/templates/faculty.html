@@ -6,19 +6,19 @@
     <div class="section">
         <table class="table is-fullwidth is-bordered is-striped">
             <tr class="is-selected">
-                <th>ROLL NO.</th>
+                <th>FACULTY ID</th>
                 <th>NAME</th>
-                <th>DATE OF BIRTH</th>
                 <th>BRANCH ID</th>
-                <th>EMAIL</th>
+                <th>DESIGNATION</th>
+                <th>ROOM NO.</th>
             </tr>
             {% for i in info %}
                 <tr>
-                    <td>{{ i['RollNo'] }}</td>
-                    <td>{{ i['First_Name'] + " " + i['Last_Name'] }}</td>
-                    <td>{{ i['DOB'] }}</td>
+                    <td>{{ i['FacultyID'] }}</td>
+                    <td>{{ i['Name'] }}</td>
                     <td>{{ i['BranchID'] }}</td>
-                    <td>{{ i['email'] }}</td>
+                    <td>{{ i['Post'] }}</td>
+                    <td>{{ i['RoomID'] }}</td>
                 </tr>
             {% endfor %}
         </table>
