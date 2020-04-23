@@ -5,6 +5,7 @@
 <div class="section">
     <h1 class="title has-text-dark" style="font-family: 'PT Sans Caption', sans-serif;">
         <center><u>
+            <i class="fa fa-database" aria-hidden="true"></i>
             Database Tables
         </center></u>
     </h1>
@@ -13,31 +14,53 @@
     <div class="columns">
         <div class="column button is-2 is-dark is-large is-outlined">
             <i class="fa fa-users" aria-hidden="true"></i>
-            Students Data
+            <a href="{{ url_for('showStudents') }}">
+                Students Data
+            </a>
         </div>
         <div class="column button is-2 is-offset-1 is-white is-large">
             <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-            Faculty Data
+            <a href="{{ url_for('showStudents') }}">
+                Faculty Data
+            </a>
         </div>
         <div class="column button is-2 is-offset-1 is-dark is-large is-outlined">
-            Branch Data
+            <i class="fa fa-bookmark" aria-hidden="true"></i>
+            <a href="{{ url_for('showStudents') }}">
+                Branch Data
+            </a>
         </div>
         <div class="column button is-2 is-offset-1 is-white is-large">
-            Course Data
+            <i class="fa fa-book" aria-hidden="true"></i>
+            <a href="{{ url_for('showStudents') }}">
+                Course Data
+            </a>
         </div>
     </div>
     <div class="columns" style="padding-top: 40px;">
         <div class="column button is-2 is-dark is-large is-outlined">
-            Room Data
+            <i class="fa fa-bed" aria-hidden="true"></i>
+            <a href="{{ url_for('showStudents') }}">
+                Room Data
+            </a>
         </div>
         <div class="column button is-2 is-offset-1 is-white is-large">
-            FMS Data
+            <i class="fa fa-cogs" aria-hidden="true"></i>
+            <a href="{{ url_for('showStudents') }}">
+                FMS Data
+            </a>
         </div>
         <div class="column button is-2 is-offset-1 is-dark is-large is-outlined">
-            Mess Data
+            <i class="fa fa-bell" aria-hidden="true"></i>
+            <a href="{{ url_for('showStudents') }}">
+                Mess Data
+            </a>
         </div>
-        <div class="column button is-2 is-offset-1 is-white is-large">
-            Complaints Data
+        <div class="column button is-2 is-offset-1 is-white is-large" style="width: 250px;">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            <a href="{{ url_for('showStudents') }}">
+                Complaints Data
+            </a>
         </div>
     </div>
     </strong>
