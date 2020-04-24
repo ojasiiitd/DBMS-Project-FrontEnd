@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<div style="font-family: 'IBM Plex Mono', monospace;">
+    <div class="section">
+        <table class="table is-fullwidth is-bordered is-striped">
+            <tr class="is-selected">
+                <th>REQUEST ID</th>
+                <th>TYPE OF REQUEST</th>
+                <th>WORK REPORT</th>
+            </tr>
+            {% for i in info %}
+                <tr>
+                    <td>{{ i['RequestID'] }}</td>
+                    <td>{{ i['type'] }}</td>
+                    <td>{{ i['CurrStatus'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

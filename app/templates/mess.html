@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<div style="font-family: 'IBM Plex Mono', monospace;">
+    <div class="section">
+        <table class="table is-fullwidth is-bordered is-striped">
+            <tr class="is-selected">
+                <th>MESS ID</th>
+                <th>NO. OF WORKERS</th>
+            </tr>
+            {% for i in info %}
+                <tr>
+                    <td>{{ i['MessID'] }}</td>
+                    <td>{{ i['Workers'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

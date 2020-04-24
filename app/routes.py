@@ -46,3 +46,17 @@ def showFms() :
     cur.execute("select * from FMS")
     data = cur.fetchall()
     return render_template("fms.html" , info = data)
+
+@app.route('/mess')
+def showMess() :
+    cur = mysql.connection.cursor()
+    cur.execute("select * from Mess")
+    data = cur.fetchall()
+    return render_template("mess.html" , info = data)
+
+@app.route('/feedback')
+def showFeedback() :
+    cur = mysql.connection.cursor()
+    cur.execute("select * from Requests_Complaints")
+    data = cur.fetchall()
+    return render_template("feedback.html" , info = data)
