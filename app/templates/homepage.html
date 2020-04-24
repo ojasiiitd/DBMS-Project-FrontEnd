@@ -2,68 +2,75 @@
 
 {% block body %}
 
-<div class="section">
-    <h1 class="title has-text-dark" style="font-family: 'PT Sans Caption', sans-serif;">
-        <center><u>
+<section class="hero is-dark is-fullheight">
+    <div class="container">
+    <div class="hero-body">
+      <div class="rows">
+        <div class="row">
+          <h1 class="title" style="color: aqua; font-family: 'Raleway', sans-serif;">
+            <center>
             <i class="fa fa-database" aria-hidden="true"></i>
-            Database Tables
-        </center></u>
-    </h1>
-    <div class="section"></div>
-    <strong>
-    <div class="columns" style="font-family: 'Ovo', serif;">
-        <div class="column button is-2 is-primary is-large">
-            <i class="fa fa-users" aria-hidden="true"></i>
-            <a href="{{ url_for('showStudents') }}">
-                Students Data
-            </a>
+                DATABASE TABLES
+            </center>
+          </h1>
         </div>
-        <div class="column button is-2 is-offset-1 is-primary is-large">
-            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-            <a href="{{ url_for('showFaculty') }}">
-                Faculty Data
-            </a>
+        <div style="background: aqua; margin-bottom: 30px;"></div>
+        <div class="is-right">
+            <div class="buttons">
+                <button class="button is-large is-fullwidth" style="background: aqua; border: none; font-family: 'Raleway', sans-serif;">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <a href="{{ url_for('showStudents') }}">
+                        Students Data
+                    </a>
+                </button>
+                <button class="button is-large is-fullwidth" style="background: aqua; border: none; font-family: 'Raleway', sans-serif;">
+                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                    <a href="{{ url_for('showFaculty') }}">
+                        Faculty Data
+                    </a>
+                </button>
+                <button class="button is-large is-fullwidth" style="background: aqua; border: none; font-family: 'Raleway', sans-serif;">
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>            
+                    <a href="{{ url_for('showBranch') }}">
+                        Branch Data
+                    </a>
+                </button>
+                <button class="button is-large is-fullwidth" style="background: aqua; border: none; font-family: 'Raleway', sans-serif;">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <a href="{{ url_for('showCourses') }}">
+                        Course Data
+                    </a>
+                </button>
+                <button class="button is-large is-fullwidth" style="background: aqua; border: none; font-family: 'Raleway', sans-serif;">
+                    <i class="fa fa-bed" aria-hidden="true"></i>
+                    <a href="{{ url_for('showRoom') }}">
+                        Room Data
+                    </a>
+                </button>
+                <button class="button is-large is-fullwidth" style="background: aqua; border: none; font-family: 'Raleway', sans-serif;">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                    <a href="{{ url_for('showFms') }}">
+                        FMS Data
+                    </a>
+                </button>
+                <button class="button is-large is-fullwidth" style="background: aqua; border: none; font-family: 'Raleway', sans-serif;">
+                    <i class="fa fa-bell" aria-hidden="true"></i>
+                    <a href="{{ url_for('showMess') }}">
+                        Mess Data
+                    </a>
+                </button>
+                <button class="button is-large is-fullwidth" style="background: aqua; border: none; font-family: 'Raleway', sans-serif;">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    <a href="{{ url_for('showFeedback') }}">
+                        Complaints Data
+                    </a>
+                </button>   
+            </div>
+          </div>
         </div>
-        <div class="column button is-2 is-offset-1 is-primary is-large">
-            <i class="fa fa-bookmark" aria-hidden="true"></i>
-            <a href="{{ url_for('showBranch') }}">
-                Branch Data
-            </a>
-        </div>
-        <div class="column button is-2 is-offset-1 is-primary is-large">
-            <i class="fa fa-book" aria-hidden="true"></i>
-            <a href="{{ url_for('showCourses') }}">
-                Course Data
-            </a>
-        </div>
+      </div>
     </div>
-    <div class="columns" style="padding-top: 40px; font-family: 'Ovo', serif;">
-        <div class="column button is-2 is-primary is-large">
-            <i class="fa fa-bed" aria-hidden="true"></i>
-            <a href="{{ url_for('showRoom') }}">
-                Room Data
-            </a>
-        </div>
-        <div class="column button is-2 is-offset-1 is-primary is-large">
-            <i class="fa fa-cogs" aria-hidden="true"></i>
-            <a href="{{ url_for('showFms') }}">
-                FMS Data
-            </a>
-        </div>
-        <div class="column button is-2 is-offset-1 is-primary is-large">
-            <i class="fa fa-bell" aria-hidden="true"></i>
-            <a href="{{ url_for('showMess') }}">
-                Mess Data
-            </a>
-        </div>
-        <div class="column button is-2 is-offset-1 is-primary is-large" style="width: 250px;">
-            <i class="fa fa-paper-plane" aria-hidden="true"></i>
-            <a href="{{ url_for('showFeedback') }}">
-                Complaints Data
-            </a>
-        </div>
     </div>
-    </strong>
-</div>
+  </section>
 
 {% endblock %}
