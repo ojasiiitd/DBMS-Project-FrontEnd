@@ -1,0 +1,193 @@
+1)How many students are present in each Branch:
+mysql> Select Count(Students.RollNo), Branch.BranchID, Branch.Name From Students INNER JOIN Branch ON Students.BranchID=Branch.BranchID Group By Branch.BranchID;
++------------------------+----------+------+
+| Count(Students.RollNo) | BranchID | Name |
++------------------------+----------+------+
+|                     20 | B1       | CSAM |
+|                     20 | B2       | CSD  |
+|                     20 | B3       | CSE  |
+|                     20 | B4       | CSSS |
+|                     20 | B5       | ECE  |
++------------------------+----------+------+
+5 rows in set (0.00 sec)
+
+2) Students if they TAs of any course running:
+mysql> Select Students.RollNo, TAsin.CourseCode from Students LEFT JOIN  TAsin ON Students.RollNo=TAsin.RollNo;
++---------+------------+
+| RollNo  | CourseCode |
++---------+------------+
+| 2010265 | CSE243     |
+| 2010265 | CSE577     |
+| 2010270 | NULL       |
+| 2010287 | CSE952     |
+| 2010410 | NULL       |
+| 2010476 | CSE540     |
+| 2010672 | NULL       |
+| 2010686 | CSE459     |
+| 2010686 | CSE752     |
+| 2010716 | NULL       |
+| 2010737 | CSE588     |
+| 2010737 | CSE588     |
+| 2010769 | NULL       |
+| 2010892 | CSE476     |
+| 2010892 | CSE736     |
+| 2011122 | NULL       |
+| 2011152 | CSE706     |
+| 2011173 | NULL       |
+.
+.
+.
+.
+.
+3) Requests/Complaints Not completed by the FMS:
+
+mysql> Select Requests_Complaints.RequestID,Requests_Complaints.CurrStatus, Students.First_Name from Students Right join Requests_Complaints  on Students.RollNo=Requests_Complaints.RollNo where CurrStatus="InProgress";
++-----------+------------+------------+
+| RequestID | CurrStatus | First_Name |
++-----------+------------+------------+
+| REQ093    | InProgress | Kariane    |
+| REQ119    | InProgress | Gage       |
+| REQ141    | InProgress | Rosina     |
+| REQ293    | InProgress | Deonte     |
+| REQ495    | InProgress | Taylor     |
+| REQ572    | InProgress | Abel       |
+| REQ608    | InProgress | Coy        |
+| REQ705    | InProgress | Morton     |
+| REQ744    | InProgress | Edison     |
+| REQ767    | InProgress | Juston     |
+| REQ782    | InProgress | Ludie      |
+| REQ787    | InProgress | Astrid     |
++-----------+------------+------------+
+12 rows in set (0.10 sec)
+
+4) Courses having more than 1 Prereq, that is Prereq itself has a Prereq:
+
+mysql> Select a.CourseCode, a.PrereqCode,b.PrereqCode from prereq a, prereq b where a.PrereqCode=b.CourseCode;
++------------+------------+------------+
+| CourseCode | PrereqCode | PrereqCode |
++------------+------------+------------+
+| CSE056     | CSE102     | CSE064     |
+| CSE515     | CSE327     | CSE211     |
+| CSE706     | CSE056     | CSE102     |
+| CSE989     | CSE183     | CSE243     |
++------------+------------+------------+
+4 rows in set (0.00 sec)
+
+5) What room am I alloted and who is my roommate
+
+MariaDB [college]> SELECT S1.RollNo, CONCAT(S1.First_Name, ' ', S1.Last_Name) Name, S1.Hostel_ID FROM Students S1 INNER JOIN Students S2 on S2.RollNo = '2018776' AND S2.Hostel_ID = S1.Hostel_ID;
++---------+-------------------+-----------+
+| RollNo  | Name              | Hostel_ID |
++---------+-------------------+-----------+
+| 2011517 | Edison Gutkowski  | H637      |
+| 2015582 | Lily Kiehn        | H637      |
+| 2017733 | Lavinia Hermiston | H637      |
+| 2018776 | Hermann Adams     | H637      |
++---------+-------------------+-----------+
+4 rows in set (0.001 sec)
+
+6) Which student complaint and for which room
+
+MariaDB [college]> SELECT R.RollNo, First_Name, Last_Name, Hostel_ID FROM Requests_Complaints R LEFT JOIN Students S ON R.RollNo = S.RollNo;
++---------+------------+-------------+-----------+
+| RollNo  | First_Name | Last_Name   | Hostel_ID |
++---------+------------+-------------+-----------+
+| 2010265 | Kariane    | Boyer       | H847      |
+| 2010270 | Gage       | Sawayn      | H704      |
+| 2010287 | Frederik   | Mayer       | H967      |
+| 2010410 | Rosina     | Hermiston   | H811      |
+| 2010476 | Emmitt     | Satterfield | H896      |
+| 2010672 | Jason      | Durgan      | H863      |
+| 2010686 | Deonte     | Schowalter  | H945      |
+| 2010716 | Kian       | Funk        | H417      |
+| 2010737 | Bernadette | Leuschke    | H778      |
+| 2010769 | Taylor     | Fritsch     | H197      |
+| 2010892 | Jeanette   | Sporer      | H863      |
+| 2011122 | Cindy      | Kohler      | H564      |
+| 2011152 | Abel       | Douglas     | H161      |
+| 2011173 | Norene     | Schuppe     | H366      |
+| 2011182 | Coy        | Johns       | H564      |
+| 2011486 | Morton     | Goldner     | H059      |
+| 2011517 | Edison     | Gutkowski   | H637      |
+| 2011634 | Juston     | Larson      | H896      |
+| 2011804 | Ludie      | Cassin      | H161      |
+| 2011917 | Astrid     | Hagenes     | H302      |
++---------+------------+-------------+-----------+
+20 rows in set (0.001 sec)
+
+7)How many TAs are under a Faculty (From all courses that faculty is taking):
+
+mysql> Select count(TAsin.RollNo), Courses.FacultyID from TAsin INNER JOIN Courses ON Courses.CourseCode=TAsin.CourseCode group by Courses.FacultyID; 
++---------------------+-----------+
+| count(TAsin.RollNo) | FacultyID |
++---------------------+-----------+
+|                   6 | FAC180    |
+|                   6 | FAC330    |
+|                   4 | FAC383    |
+|                   6 | FAC390    |
+|                   5 | FAC427    |
+|                   6 | FAC649    |
+|                   5 | FAC712    |
+|                   3 | FAC738    |
+|                   4 | FAC850    |
+|                   5 | FAC959    |
++---------------------+-----------+
+10 rows in set (0.00 sec)
+
+8) First 10 rows of Student eating from which Mess and Menu
+mysql> Select Students.MessID,Students.RollNo,Mess.Menu from Students CROSS JOIN Mess ON Students.MessID=Mess.MessID LIMIT 10;
+
++--------+---------+-------------+
+| MessID | RollNo  | Menu        |
++--------+---------+-------------+
+| M7     | 2010265 | Indian      |
+| M3     | 2010270 | Continental |
+| M7     | 2010287 | Indian      |
+| M1     | 2010410 | Chinese     |
+| M1     | 2010476 | Chinese     |
+| M1     | 2010672 | Chinese     |
+| M3     | 2010686 | Continental |
+| M1     | 2010716 | Chinese     |
+| M1     | 2010737 | Chinese     |
+| M3     | 2010769 | Continental |
++--------+---------+-------------+
+10 rows in set (0.00 sec)
+
+9)Students who passed course CSE327 in semester 3:
+
+mysql> Select takes.CourseCode ,takes.Grade, Students.RollNo, Students.First_Name,Students.Last_Name from takes JOIN Students ON takes.RollNo=Students.RollNo
++------------+-------+---------+------------+-----------+
+| CourseCode | Grade | RollNo  | First_Name | Last_Name |
++------------+-------+---------+------------+-----------+
+| CSE327     | 9     | 2016304 | Henriette  | Berge     |
++------------+-------+---------+------------+-----------+
+1 row in set (0.00 sec)
+
+
+10)BatchMates of Kariane , ie , same Semester, and taking Course="CSE345"
+
+mysql> create view studentcourses as select Students.First_Name,Students.Last_Name,Students.RollNo,takes.CourseCode,Students.CurrentSemester from Students join takes on Students.RollNo=takes.RollNo;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> select T.First_Name,T.Last_Name,T.RollNo,T.CourseCode from studentcourses as T join studentcourses s  where s.First_Name="Kariane" and T.CurrentSemester=s.CurrentSemester and T.First_Name!="Kariane" and T.CourseCode="CSE345";
++------------+-----------+---------+------------+
+| First_Name | Last_Name | RollNo  | CourseCode |
++------------+-----------+---------+------------+
+| Flossie    | Turner    | 2016417 | CSE345     |
+| Ava        | Conroy    | 2019710 | CSE345     |
++------------+-----------+---------+------------+
+2 rows in set (0.05 sec)
+
+11)Returns the number of students that have repeated a course:
+
+mysql> select * from   (select Students.First_Name,Students.Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)   as T join  (select students.First_Name,Last_Name,students.RollNo,takes.CourseCode from Students students join takes on students.RollNo=takes.RollNo)    as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode;
+
++------------+-----------+---------+------------+------------+-----------+---------+------------+
+| First_Name | Last_Name | RollNo  | CourseCode | First_Name | Last_Name | RollNo  | CourseCode |
++------------+-----------+---------+------------+------------+-----------+---------+------------+
+| Kariane    | Boyer     | 2010265 | CSE056     | Kariane    | Boyer     | 2010265 | CSE327     |
+| Kariane    | Boyer     | 2010265 | CSE327     | Kariane    | Boyer     | 2010265 | CSE056     |
+| Gage       | Sawayn    | 2010270 | CSE064     | Gage       | Sawayn    | 2010270 | CSE327     |
+| Gage       | Sawayn    | 2010270 | CSE327     | Gage       | Sawayn    | 2010270 | CSE064     |
++------------+-----------+---------+------------+------------+-----------+---------+------------+
+4 rows in set (0.00 sec)
