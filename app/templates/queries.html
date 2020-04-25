@@ -18,8 +18,11 @@
             <a class="list-item is-active">
                 select * from (select Students.First_Name,Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)   as T join  (select Students.First_Name,Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)    as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode
             </a>
-            <a class="list-item">
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
                 <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[0]|length }}</td>
+                    </tr>
                     {% for i in info[0] %}
                     <tr>
                         <td>{{ i }}</td>
@@ -30,8 +33,11 @@
             <a class="list-item is-active">
                 select s.First_Name,s.Last_Name from Students s where s.RollNo in (select T.RollNo from  takes as T join takes as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode)
             </a>
-            <a class="list-item">
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
                 <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[1]|length }}</td>
+                    </tr>
                     {% for i in info[0] %}
                     <tr>
                         <td>{{ i }}</td>
@@ -43,8 +49,11 @@
             <a class="list-item is-active">
                 select EmployeeID,RC.RequestID,Hostel from FMS join Requests_Complaints RC on FMS.RequestID = RC.RequestID where RC.CurrStatus="InProgress" 
             </a>
-            <a class="list-item">
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
                 <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[2]|length }}</td>
+                    </tr>
                     {% for i in info[2] %}
                     <tr>
                         <td>{{ i }}</td>
@@ -55,9 +64,177 @@
             <a class="list-item is-active">
                 select * from takes join Students S on takes.RollNo = S.RollNo where takes.CourseCode="CSE327" and takes.Semester=3 and takes.Grade>8
             </a>
-            <a class="list-item">
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
                 <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[3]|length }}</td>
+                    </tr>
                     {% for i in info[3] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                Select Count(Students.RollNo), Branch.BranchID, Branch.Name From Students INNER JOIN Branch ON Students.BranchID=Branch.BranchID Group By Branch.BranchID
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[4]|length }}</td>
+                    </tr>
+                    {% for i in info[4] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                Select Students.RollNo, TAsin.CourseCode from Students LEFT JOIN  TAsin ON Students.RollNo=TAsin.RollNo
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[5]|length }}</td>
+                    </tr>
+                    {% for i in info[5] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                Select Requests_Complaints.RequestID,Requests_Complaints.CurrStatus, Students.First_Name from Students Right join Requests_Complaints  on Students.RollNo=Requests_Complaints.RollNo where CurrStatus="InProgress"
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[6]|length }}</td>
+                    </tr>
+                    {% for i in info[6] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                Select a.CourseCode, a.PrereqCode,b.PrereqCode from prereq a, prereq b where a.PrereqCode=b.CourseCode
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[7]|length }}</td>
+                    </tr>
+                    {% for i in info[7] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                SELECT S1.RollNo, CONCAT(S1.First_Name, ' ', S1.Last_Name) Name, S1.Hostel_ID FROM Students S1 INNER JOIN Students S2 on S2.RollNo = '2018776' AND S2.Hostel_ID = S1.Hostel_ID
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[8]|length }}</td>
+                    </tr>
+                    {% for i in info[8] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                SELECT R.RollNo, First_Name, Last_Name, Hostel_ID FROM Requests_Complaints R LEFT JOIN Students S ON R.RollNo = S.RollNo
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[9]|length }}</td>
+                    </tr>
+                    {% for i in info[9] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                Select count(TAsin.RollNo), Courses.FacultyID from TAsin INNER JOIN Courses ON Courses.CourseCode=TAsin.CourseCode group by Courses.FacultyID
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[10]|length }}</td>
+                    </tr>
+                    {% for i in info[10] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                Select Students.MessID,Students.RollNo,Mess.Menu from Students CROSS JOIN Mess ON Students.MessID=Mess.MessID LIMIT 10
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[11]|length }}</td>
+                    </tr>
+                    {% for i in info[11] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                Select takes.CourseCode ,takes.Grade, Students.RollNo, Students.First_Name,Students.Last_Name from takes JOIN Students ON takes.RollNo=Students.RollNo
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[12]|length }}</td>
+                    </tr>
+                    {% for i in info[12] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                select T.First_Name,T.Last_Name,T.RollNo,T.CourseCode from studentcourses as T join studentcourses s  where s.First_Name="Kariane" and T.CurrentSemester=s.CurrentSemester and T.First_Name!="Kariane" and T.CourseCode="CSE345"
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[13]|length }}</td>
+                    </tr>
+                    {% for i in info[13] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                select * from   (select Students.First_Name,Students.Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)   as T join  (select students.First_Name,Last_Name,students.RollNo,takes.CourseCode from Students students join takes on students.RollNo=takes.RollNo)    as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode
+            </a>
+            <a class="list-item"  style="max-height: 400px; overflow-y: scroll;">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    <tr>
+                        <td>Number Of Entries : {{ info[14]|length }}</td>
+                    </tr>
+                    {% for i in info[14] %}
                     <tr>
                         <td>{{ i }}</td>
                     </tr>
