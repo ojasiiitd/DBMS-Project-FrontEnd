@@ -19,13 +19,25 @@
                 select * from (select Students.First_Name,Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)   as T join  (select Students.First_Name,Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)    as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode
             </a>
             <a class="list-item">
-                EMPTY-SET
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    {% for i in info[0] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </a>
             <a class="list-item is-active">
                 select s.First_Name,s.Last_Name from Students s where s.RollNo in (select T.RollNo from  takes as T join takes as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode)
             </a>
             <a class="list-item">
-                EMPTY-SET
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    {% for i in info[0] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </a>
             </a>
             <a class="list-item is-active">

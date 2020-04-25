@@ -11,7 +11,7 @@ def showStudents() :
     cur = mysql.connection.cursor()
     cur.execute("select * from Students")
     data = cur.fetchall()
-    return render_template("Students.html" , info = data)
+    return render_template("students.html" , info = data)
 
 @app.route('/faculty')
 def showFaculty() :
