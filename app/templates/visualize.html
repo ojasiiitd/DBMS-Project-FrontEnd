@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'index.html' %}
 
-</body>
-</html>
+{% block body %}
+
+<section class="hero is-dark is-fullheight">
+    <div class="container">
+    <div class="hero-body">
+    <form action="{{ url_for('showVisualizations') }}" method="post">
+
+        <div class="field">
+
+            <label for="question" class="label">
+                <h1 class="title" style="color: aqua; font-family: 'Raleway', sans-serif;">
+                    Enter Course Code !
+
+                </h1>
+            </label>
+        <div class="has-text-centered">
+        <input type="text" class="input" name="code"  id="code" value="" >
+            <input type="submit" class="button is-link"  value="Submit">
+        </div>
+        </div>
+    </form>
+
+    </div>
+    </div>
+
+</section>
+
+{% endblock %}
