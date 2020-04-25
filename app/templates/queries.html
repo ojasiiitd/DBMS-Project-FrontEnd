@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<section class="hero is-dark is-fullheight">
+    <div class="container">
+    <div class="hero-body">
+      <div class="rows">
+        <div class="row">
+          <h1 class="title" style="color: aqua; font-family: 'Raleway', sans-serif;">
+            <center>
+            <i class="fa fa-code" aria-hidden="true"></i>
+            QUERIES
+            </center>
+          </h1>
+        </div>
+        <div style="background: aqua; margin-bottom: 30px;"></div>
+        <div class="list is-hoverable">
+            <a class="list-item is-active">
+                select * from (select Students.First_Name,Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)   as T join  (select Students.First_Name,Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)    as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode
+            </a>
+            <a class="list-item">
+                EMPTY-SET
+            </a>
+            <a class="list-item is-active">
+                select s.First_Name,s.Last_Name from Students s where s.RollNo in (select T.RollNo from  takes as T join takes as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode)
+            </a>
+            <a class="list-item">
+                EMPTY-SET
+            </a>
+            </a>
+            <a class="list-item is-active">
+                select EmployeeID,RC.RequestID,Hostel from FMS join Requests_Complaints RC on FMS.RequestID = RC.RequestID where RC.CurrStatus="InProgress" 
+            </a>
+            <a class="list-item">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    {% for i in info[2] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+            <a class="list-item is-active">
+                select * from takes join Students S on takes.RollNo = S.RollNo where takes.CourseCode="CSE327" and takes.Semester=3 and takes.Grade>8
+            </a>
+            <a class="list-item">
+                <table class="table is-fullwidth is-bordered is-striped" style="font-family: 'PT Mono', monospace;">
+                    {% for i in info[3] %}
+                    <tr>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+{% endblock %}
