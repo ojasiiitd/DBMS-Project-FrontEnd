@@ -5,12 +5,12 @@ from app import app , mysql
 def homepage() :
     return render_template("homepage.html" , value = "")
 
-@app.route('/students')
+@app.route('/Students')
 def showStudents() :
     cur = mysql.connection.cursor()
     cur.execute("select * from Students")
     data = cur.fetchall()
-    return render_template("students.html" , info = data)
+    return render_template("Students.html" , info = data)
 
 @app.route('/faculty')
 def showFaculty() :
@@ -60,3 +60,21 @@ def showFeedback() :
     cur.execute("select * from Requests_Complaints")
     data = cur.fetchall()
     return render_template("feedback.html" , info = data)
+
+@app.route('/queries')
+def queries() :
+    cur = mysql.connection.cursor()
+    cur.execute("select * from (select Students.First_Name,Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)   as T join  (select Students.First_Name,Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)    as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode")
+    data = []
+    data.append(cur.fetchall())
+    cur.execute("select s.First_Name,s.Last_Name from Students s where s.RollNo in (select T.RollNo from  takes as T join takes as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode)")
+    data.append(cur.fetchall())
+    cur.execute("select EmployeeID,RC.RequestID,Hostel from FMS join Requests_Complaints RC on FMS.RequestID = RC.RequestID where RC.CurrStatus=\"InProgress\" ")
+    data.append(cur.fetchall())
+    cur.execute("select * from takes join Students S on takes.RollNo = S.RollNo where takes.CourseCode=\"CSE327\" and takes.Semester=3 and takes.Grade>8")
+    data.append(cur.fetchall())
+
+    print(len(data))
+    print(data)
+    
+    return render_template("queries.html" , info = data)
