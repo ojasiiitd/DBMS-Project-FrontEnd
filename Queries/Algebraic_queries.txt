@@ -155,7 +155,7 @@ mysql> Select Students.MessID,Students.RollNo,Mess.Menu from Students CROSS JOIN
 
 9)Students who passed course CSE327 in semester 3:
 
-mysql> Select takes.CourseCode ,takes.Grade, Students.RollNo, Students.First_Name,Students.Last_Name from takes JOIN Students ON takes.RollNo=Students.RollNo
+mysql> select * from takes join Students S on takes.RollNo = S.RollNo where takes.CourseCode="CSE327" and takes.Semester=3 and takes.Grade>8;
 +------------+-------+---------+------------+-----------+
 | CourseCode | Grade | RollNo  | First_Name | Last_Name |
 +------------+-------+---------+------------+-----------+
