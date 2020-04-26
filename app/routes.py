@@ -124,7 +124,10 @@ def queries():
     cur.execute(
         "select * from   (select Students.First_Name,Students.Last_Name,Students.RollNo,takes.CourseCode from Students join takes on Students.RollNo=takes.RollNo)   as T join  (select students.First_Name,Last_Name,students.RollNo,takes.CourseCode from Students students join takes on students.RollNo=takes.RollNo)    as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode")
     data.append(cur.fetchall())
-
+    cur.execute(
+        "Select VARIANCE(Students.Grade) from Students")
+    data.append(cur.fetchall())
+    
     return render_template("queries.html", info=data)
 
 
