@@ -127,7 +127,7 @@ def queries():
     cur.execute(
         "Select VARIANCE(Students.Grade) from Students")
     data.append(cur.fetchall())
-    
+
     return render_template("queries.html", info=data)
 
 
@@ -197,8 +197,8 @@ def coursePerformace(fac_id):
             semsToGrades[sem] = semsToGrades.get(sem, []) + [grade]
         for i in semsToGrades:
             semsToGrades[i] = sum(semsToGrades[i]) / len(semsToGrades)
-        xlist=sorted(list(semsToGrades.keys()))
-        ylist=[semsToGrades[i] for i in xlist]
+        xlist = sorted(list(semsToGrades.keys()))
+        ylist = [semsToGrades[i] for i in xlist]
         lines.append(go.Scatter(name=currCourse, x=xlist, y=ylist,
                                 mode='lines+markers'))
     fig = go.Figure(data=lines)
@@ -210,6 +210,48 @@ def coursePerformace(fac_id):
     fig.write_html('app/templates/visualize2.html')
 
 
-def CollegePerformace():
+@app.route('/roomate', methods=['GET', 'POST'])
+def roomate():
+    if request.method == "POST":
+        roll_no, interest, name = bestMatch(request.form['interest'])
+        return render_template('roomateresult.html',
+                               info={'roll_no': roll_no, 'interest_roomate': interest, 'name': name,
+                                     'interest_student': request.form['interest']})
+    else:
+        return render_template('roomate.html')
+
+
+def bestMatch(word):
     curr = mysql.connection.cursor()
-    curr.execute("select ")
+    curr.execute("select First_Name,Last_Name,RollNo,interest from students")
+    output = curr.fetchall()
+    maxRollNo = -1
+    maxScore = 0
+    bestInterest = ""
+    name = ""
+
+    for data in output:
+        score = get_similiarity(data['interest'], word)
+        if score > maxScore:
+            maxScore = score
+            bestInterest = data['interest']
+            maxRollNo = data['RollNo']
+            name = data['First_Name'] + " " + data['Last_Name']
+    return maxRollNo, bestInterest, name
+
+
+def get_similiarity(s1, s2):
+    # calculated the cosine distance of words
+    s1, s2 = s1.lower(), s2.lower()
+    l1 = [0] * 26
+    l2 = [0] * 26
+    # print(s1 , s2)
+    for i in range(len(s1)):
+        l1[ord(s1[i]) - 97] = 1
+    for i in range(len(s2)):
+        l2[ord(s2[i]) - 97] = 1
+    score = 0
+    for i in range(26):
+        score += l1[i] * l2[i]
+    cosine_score = score / float((sum(l1) * sum(l2)) ** 0.5)
+    return cosine_score

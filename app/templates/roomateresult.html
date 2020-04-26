@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<div class="container" style="font-family: 'IBM Plex Mono', monospace;">
+    <div class="section">
+        <h3 class="subtitle" style="color: aqua; font-family: 'Raleway', sans-serif;">You Entered the interest : {{ info['interest_student'] }}</h3>
+        <h5 class="title" style="color: aqua; font-family: 'Raleway', sans-serif;">The following roomate has been selected for you !</h5>
+    </div>
+    <div class="section">
+        <table class="table is-fullwidth is-bordered is-striped">
+            <tr class="is-selected">
+                <th>Roll No</th>
+                <th>Roomate Name</th>
+                <th>Roomate Interest!</th>
+            </tr>
+            <tr>
+                    <td>{{ info['roll_no'] }}</td>
+                    <td>{{ info['name'] }}</td>
+                    <td>{{ info['interest_roomate'] }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}
