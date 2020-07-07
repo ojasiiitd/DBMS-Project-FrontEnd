@@ -9,3 +9,5 @@ Instructions to run
 
 4. ``` flask run ```
 
+ER diagram used after normalizing the functional dependencies
+https://app.lucidchart.com/invitations/accept/a10dbdc6-0ee7-4c22-a961-585b54cfbe81
