@@ -223,7 +223,7 @@ def roomate():
 
 def bestMatch(word):
     curr = mysql.connection.cursor()
-    curr.execute("select First_Name,Last_Name,RollNo,interest from students")
+    curr.execute("select First_Name,Last_Name,RollNo,interest from Students")
     output = curr.fetchall()
     maxRollNo = -1
     maxScore = 0

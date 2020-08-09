@@ -1,8 +1,7 @@
 #Both the above queries return the number of students that have repeated a course
-select * from   (select students.First_Name,Last_Name,students.RollNo,takes.CourseCode from students join takes on students.RollNo=takes.RollNo)   as T join  (select students.First_Name,Last_Name,students.RollNo,takes.CourseCode from students join takes on students.RollNo=takes.RollNo)    as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode;
+select * from   (select students.First_Name,Last_Name,students.RollNo,takes.CourseCode from students join takes on students.RollNo=takes.RollNo) as T join  (select students.First_Name,Last_Name,students.RollNo,takes.CourseCode from students join takes on students.RollNo=takes.RollNo) as R where R.RollNo  = T.RollNo  and R.CourseCode != T.CourseCode;
 
-select s.First_Name,s.Last_Name from students s
-
+select s.First_Name,s.Last_Name from students s 
 where s.RollNo in
 (
 	select T.RollNo from  takes as T join takes as R where
