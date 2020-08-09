@@ -1,13 +1,16 @@
 # DBMS-Project-FrontEnd
-Instructions to run 
+ER diagram used after normalizing the functional dependencies can be found [here](https://app.lucidchart.com/invitations/accept/a10dbdc6-0ee7-4c22-a961-585b54cfbe81)
 
-1. Change your current working directory to the roject directory
+## Instructions to Setup :
 
-2. Import db into database using schema_vk.sql
+* Fork this repo.
+* Use `git clone https://github.com/<your-github-username>/DBMS-Project-FrontEnd.git` to clone this repo into your system
+* Install pip3 on your system by `sudo apt-get install python3-pip` if not already installed.
+* Create a virtual environment by the name of **venv**. Information in setting up virtualenv can be found [here](https://docs.python-guide.org/dev/virtualenvs/ "Pipenv & Virtual Environments").
+* Enter your virtualenv by `source venv/bin/activate`
+* Do a `pip install -r requirements.txt` to install the required packages.
 
-3. Edit your keys in /app/__init__.py
+## Working :
 
-4. ``` flask run ```
-
-ER diagram used after normalizing the functional dependencies
-https://app.lucidchart.com/invitations/accept/a10dbdc6-0ee7-4c22-a961-585b54cfbe81
+* Open command line and enter your virtualenv venv.
+* Use `python run.py` and go to `localhost:5000` to show the webpage.
